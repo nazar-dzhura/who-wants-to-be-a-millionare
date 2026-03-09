@@ -47,6 +47,12 @@ npm start
 npm run lint
 ```
 
+### Testing
+
+```bash
+npm test
+```
+
 ## Game Configuration
 
 Questions and answers are defined in `src/data/questions.json`. The config supports:
@@ -80,9 +86,15 @@ Questions and answers are defined in `src/data/questions.json`. The config suppo
 - **Language**: TypeScript
 - **Styling**: CSS Modules + CSS custom properties
 - **State**: React Context + useReducer
+- **Testing**: Vitest
 - **Linting**: ESLint 9 with Next.js core-web-vitals + TypeScript rules
+- **Git Hooks**: Husky + lint-staged (ESLint on commit, tests on push)
 
 > **Note on Airbnb ESLint:** The `eslint-config-airbnb` package does not yet support ESLint 9 flat config (required by Next.js 16). The project uses `eslint-config-next/core-web-vitals` and `eslint-config-next/typescript`, which enforce the majority of Airbnb rules including React hooks, JSX accessibility, import ordering, and TypeScript strict checks.
+
+## Live Demo
+
+[https://who-wants-to-be-a-millionare-xi.vercel.app](https://who-wants-to-be-a-millionare-xi.vercel.app)
 
 ## Deploy
 
