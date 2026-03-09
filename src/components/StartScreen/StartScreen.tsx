@@ -6,7 +6,7 @@ import { Button } from '@/components/Button/Button';
 import styles from './StartScreen.module.css';
 
 export function StartScreen() {
-  const { dispatch } = useGame();
+  const { startGame } = useGame();
 
   return (
     <div className={styles.container}>
@@ -28,7 +28,7 @@ export function StartScreen() {
             {' '}
             a&nbsp;millionaire?
           </h1>
-          <Button onClick={() => dispatch({ type: 'START_GAME' })}>
+          <Button onClick={startGame}>
             Start
           </Button>
         </div>

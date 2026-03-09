@@ -1,5 +1,6 @@
 import type { Question } from '@/types/game';
 import { MoneyLadder } from '@/components/MoneyLadder/MoneyLadder';
+import { Icon } from '@/components/Icon/Icon';
 import styles from './MobileMenu.module.css';
 
 interface MobileMenuProps {
@@ -25,9 +26,7 @@ export function MobileMenu({
         onClick={onClose}
         aria-label="Close menu"
       >
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-          <path d="M6 6l12 12M18 6L6 18" stroke="#1C1C21" strokeWidth="2" strokeLinecap="round" />
-        </svg>
+        <Icon name="close" />
       </button>
       <div className={styles.content}>
         <MoneyLadder

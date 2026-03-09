@@ -7,7 +7,7 @@ import { formatCurrency } from '@/utils/formatCurrency';
 import styles from './ResultScreen.module.css';
 
 export function ResultScreen() {
-  const { state, dispatch } = useGame();
+  const { state, resetGame } = useGame();
 
   return (
     <div className={styles.container}>
@@ -30,7 +30,7 @@ export function ResultScreen() {
               earned
             </h2>
           </div>
-          <Button onClick={() => dispatch({ type: 'RESET_GAME' })}>
+          <Button onClick={resetGame}>
             Try again
           </Button>
         </div>

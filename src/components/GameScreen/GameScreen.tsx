@@ -5,11 +5,19 @@ import { useGame } from '@/hooks/useGame';
 import { AnswerOption } from '@/components/AnswerOption/AnswerOption';
 import { MoneyLadder } from '@/components/MoneyLadder/MoneyLadder';
 import { MobileMenu } from '@/components/MobileMenu/MobileMenu';
+import { Icon } from '@/components/Icon/Icon';
+import { isAnswerCorrect } from '@/utils/gameLogic';
 import type { AnswerStatus } from '@/types/game';
 import styles from './GameScreen.module.css';
 
 export function GameScreen() {
-  const { state, dispatch } = useGame();
+  const {
+    state,
+    selectAnswer,
+    revealAnswer,
+    nextQuestion,
+    endGame,
+  } = useGame();
   const [menuOpen, setMenuOpen] = useState(false);
   const revealTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const advanceTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -31,22 +39,21 @@ export function GameScreen() {
   const handleSelectAnswer = useCallback((index: number) => {
     if (answerStatus !== 'idle') return;
 
-    dispatch({ type: 'SELECT_ANSWER', index });
+    selectAnswer(index);
 
     revealTimerRef.current = setTimeout(() => {
-      dispatch({ type: 'REVEAL_ANSWER' });
+      revealAnswer();
 
       advanceTimerRef.current = setTimeout(() => {
         const question = questions[currentQuestionIndex];
-        const isCorrect = question.correctAnswers.includes(index);
-        if (isCorrect) {
-          dispatch({ type: 'NEXT_QUESTION' });
+        if (isAnswerCorrect(question, index)) {
+          nextQuestion();
         } else {
-          dispatch({ type: 'END_GAME' });
+          endGame();
         }
       }, 1500);
     }, 1000);
-  }, [answerStatus, dispatch, questions, currentQuestionIndex]);
+  }, [answerStatus, selectAnswer, revealAnswer, nextQuestion, endGame, questions, currentQuestionIndex]);
 
   const getAnswerStatus = (index: number): AnswerStatus => {
     if (answerStatus === 'idle') return 'idle';
@@ -75,9 +82,7 @@ export function GameScreen() {
             onClick={() => setMenuOpen(true)}
             aria-label="Open money ladder"
           >
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <path d="M3 6h18M3 12h18M3 18h18" stroke="#1C1C21" strokeWidth="2" strokeLinecap="round" />
-            </svg>
+            <Icon name="hamburger" />
           </button>
           <h2 className={styles.questionText}>{currentQuestion.text}</h2>
         </div>

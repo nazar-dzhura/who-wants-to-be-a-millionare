@@ -1,5 +1,6 @@
 import { formatCurrency } from '@/utils/formatCurrency';
 import type { Question } from '@/types/game';
+import { STEP_STATE_COLORS, type StepStatus } from '@/constants/colors';
 import styles from './MoneyLadder.module.css';
 
 interface MoneyLadderProps {
@@ -7,14 +8,6 @@ interface MoneyLadderProps {
   currentIndex: number;
   variant?: 'desktop' | 'mobile';
 }
-
-type StepStatus = 'inactive' | 'current' | 'finished';
-
-const STEP_COLORS: Record<StepStatus, { stroke: string; text: string }> = {
-  inactive: { stroke: '#D0D0D8', text: '#1C1C21' },
-  current: { stroke: '#FF8B37', text: '#FF8B37' },
-  finished: { stroke: '#D0D0D8', text: '#D0D0D8' },
-};
 
 function StepSvg({ stroke }: { stroke: string }) {
   return (
@@ -57,7 +50,7 @@ export function MoneyLadder({
         if (originalIdx === currentIndex) status = 'current';
         else if (originalIdx < currentIndex) status = 'finished';
 
-        const colors = STEP_COLORS[status];
+        const colors = STEP_STATE_COLORS[status];
 
         return (
           <li key={question.id} className={styles.step}>

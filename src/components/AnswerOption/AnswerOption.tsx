@@ -1,5 +1,6 @@
 import type { AnswerStatus } from '@/types/game';
 import { getLetterPrefix } from '@/utils/gameLogic';
+import { ANSWER_STATE_COLORS, COLORS } from '@/constants/colors';
 import styles from './AnswerOption.module.css';
 
 interface AnswerOptionProps {
@@ -9,13 +10,6 @@ interface AnswerOptionProps {
   disabled: boolean;
   onClick: () => void;
 }
-
-const STATE_COLORS: Record<AnswerStatus, { stroke: string; fill: string }> = {
-  idle: { stroke: '#D0D0D8', fill: '#FFFFFF' },
-  selected: { stroke: '#FF8B37', fill: '#FFF3EB' },
-  correct: { stroke: '#47D867', fill: '#E6FAEA' },
-  wrong: { stroke: '#EC6259', fill: '#FDEEED' },
-};
 
 function HexSvg({ stroke, fill }: { stroke: string; fill: string }) {
   return (
@@ -52,7 +46,7 @@ export function AnswerOption({
   disabled,
   onClick,
 }: AnswerOptionProps) {
-  const colors = STATE_COLORS[status];
+  const colors = ANSWER_STATE_COLORS[status];
   const hoverClass = status === 'idle' && !disabled ? styles.hoverable : '';
 
   return (
@@ -64,7 +58,7 @@ export function AnswerOption({
     >
       <HexSvg stroke={colors.stroke} fill={colors.fill} />
       <span className={styles.hoverShape}>
-        <HexSvg stroke="#FF8B37" fill="#FFFFFF" />
+        <HexSvg stroke={COLORS.orange100} fill={COLORS.white} />
       </span>
       <span className={styles.content}>
         <span className={styles.letter}>{getLetterPrefix(index)}</span>

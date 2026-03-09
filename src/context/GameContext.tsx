@@ -8,7 +8,7 @@ import {
   type Dispatch,
 } from 'react';
 import type { GameState, GameAction } from '@/types/game';
-import { isAnswerCorrect } from '@/utils/gameLogic';
+import { isAnswerCorrect, calculateScore } from '@/utils/gameLogic';
 import gameData from '@/data/questions.json';
 
 const { questions } = gameData;
@@ -50,12 +50,12 @@ function gameReducer(state: GameState, action: GameAction): GameState {
 
     case 'NEXT_QUESTION': {
       const nextIndex = state.currentQuestionIndex + 1;
-      const currentQuestion = state.questions[state.currentQuestionIndex];
+      const newScore = calculateScore(state.questions, state.currentQuestionIndex);
       if (nextIndex >= state.questions.length) {
         return {
           ...state,
           screen: 'result',
-          score: currentQuestion.prize,
+          score: newScore,
           answerStatus: 'idle',
           selectedAnswerIndex: null,
         };
@@ -65,13 +65,12 @@ function gameReducer(state: GameState, action: GameAction): GameState {
         currentQuestionIndex: nextIndex,
         selectedAnswerIndex: null,
         answerStatus: 'idle',
-        score: currentQuestion.prize,
+        score: newScore,
       };
     }
 
     case 'END_GAME': {
-      const prevIndex = state.currentQuestionIndex - 1;
-      const earnedScore = prevIndex >= 0 ? state.questions[prevIndex].prize : 0;
+      const earnedScore = calculateScore(state.questions, state.currentQuestionIndex - 1);
       return {
         ...state,
         screen: 'result',
@@ -92,10 +91,7 @@ function gameReducer(state: GameState, action: GameAction): GameState {
 export const GameContext = createContext<{
   state: GameState;
   dispatch: Dispatch<GameAction>;
-}>({
-  state: initialState,
-  dispatch: () => undefined,
-});
+} | null>(null);
 
 export function GameProvider({ children }: { children: ReactNode }) {
   const [state, dispatch] = useReducer(gameReducer, initialState);
