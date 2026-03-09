@@ -1,4 +1,4 @@
-import type { Question } from '@/types/game';
+import type { Question, AnswerStatus } from '@/types/game';
 
 export function isAnswerCorrect(
   question: Question,
@@ -17,4 +17,16 @@ export function calculateScore(
 
 export function getLetterPrefix(index: number): string {
   return String.fromCharCode(65 + index);
+}
+
+export function getAnswerDisplayStatus(
+  index: number,
+  selectedIndex: number | null,
+  answerStatus: AnswerStatus,
+  correctAnswers: number[],
+): AnswerStatus {
+  if (answerStatus === 'idle') return 'idle';
+  if (index === selectedIndex) return answerStatus;
+  if (answerStatus === 'wrong' && correctAnswers.includes(index)) return 'correct';
+  return 'idle';
 }

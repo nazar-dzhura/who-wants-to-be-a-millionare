@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { isAnswerCorrect, calculateScore, getLetterPrefix } from '../gameLogic';
+import { isAnswerCorrect, calculateScore, getLetterPrefix, getAnswerDisplayStatus } from '../gameLogic';
 import type { Question } from '@/types/game';
 
 const mockQuestions: Question[] = [
@@ -65,5 +65,38 @@ describe('getLetterPrefix', () => {
   it('handles indices beyond D', () => {
     expect(getLetterPrefix(4)).toBe('E');
     expect(getLetterPrefix(25)).toBe('Z');
+  });
+});
+
+describe('getAnswerDisplayStatus', () => {
+  const correctAnswers = [1];
+
+  it('returns idle when answerStatus is idle', () => {
+    expect(getAnswerDisplayStatus(0, null, 'idle', correctAnswers)).toBe('idle');
+    expect(getAnswerDisplayStatus(1, null, 'idle', correctAnswers)).toBe('idle');
+  });
+
+  it('returns selected for the selected answer', () => {
+    expect(getAnswerDisplayStatus(2, 2, 'selected', correctAnswers)).toBe('selected');
+  });
+
+  it('returns idle for non-selected answers during selection', () => {
+    expect(getAnswerDisplayStatus(0, 2, 'selected', correctAnswers)).toBe('idle');
+  });
+
+  it('returns correct for the selected answer when correct', () => {
+    expect(getAnswerDisplayStatus(1, 1, 'correct', correctAnswers)).toBe('correct');
+  });
+
+  it('returns wrong for the selected answer when wrong', () => {
+    expect(getAnswerDisplayStatus(0, 0, 'wrong', correctAnswers)).toBe('wrong');
+  });
+
+  it('highlights correct answer when a wrong answer is selected', () => {
+    expect(getAnswerDisplayStatus(1, 0, 'wrong', correctAnswers)).toBe('correct');
+  });
+
+  it('returns idle for non-selected non-correct answers when wrong', () => {
+    expect(getAnswerDisplayStatus(2, 0, 'wrong', correctAnswers)).toBe('idle');
   });
 });

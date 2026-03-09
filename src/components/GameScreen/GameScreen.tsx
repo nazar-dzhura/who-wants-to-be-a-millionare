@@ -6,8 +6,8 @@ import { AnswerOption } from '@/components/AnswerOption/AnswerOption';
 import { MoneyLadder } from '@/components/MoneyLadder/MoneyLadder';
 import { MobileMenu } from '@/components/MobileMenu/MobileMenu';
 import { Icon } from '@/components/Icon/Icon';
-import { isAnswerCorrect } from '@/utils/gameLogic';
-import type { AnswerStatus } from '@/types/game';
+import { isAnswerCorrect, getAnswerDisplayStatus } from '@/utils/gameLogic';
+import { REVEAL_DELAY_MS, ADVANCE_DELAY_MS } from '@/constants/timing';
 import styles from './GameScreen.module.css';
 
 export function GameScreen() {
@@ -45,32 +45,14 @@ export function GameScreen() {
       revealAnswer();
 
       advanceTimerRef.current = setTimeout(() => {
-        const question = questions[currentQuestionIndex];
-        if (isAnswerCorrect(question, index)) {
+        if (isAnswerCorrect(currentQuestion, index)) {
           nextQuestion();
         } else {
           endGame();
         }
-      }, 1500);
-    }, 1000);
-  }, [answerStatus, selectAnswer, revealAnswer, nextQuestion, endGame, questions, currentQuestionIndex]);
-
-  const getAnswerStatus = (index: number): AnswerStatus => {
-    if (answerStatus === 'idle') return 'idle';
-
-    if (index === selectedAnswerIndex) {
-      return answerStatus;
-    }
-
-    if (
-      answerStatus === 'wrong'
-      && currentQuestion.correctAnswers.includes(index)
-    ) {
-      return 'correct';
-    }
-
-    return 'idle';
-  };
+      }, ADVANCE_DELAY_MS);
+    }, REVEAL_DELAY_MS);
+  }, [answerStatus, selectAnswer, revealAnswer, nextQuestion, endGame, currentQuestion]);
 
   return (
     <div className={styles.container}>
@@ -92,7 +74,12 @@ export function GameScreen() {
               key={answer.text}
               index={index}
               text={answer.text}
-              status={getAnswerStatus(index)}
+              status={getAnswerDisplayStatus(
+                index,
+                selectedAnswerIndex,
+                answerStatus,
+                currentQuestion.correctAnswers,
+              )}
               disabled={answerStatus !== 'idle'}
               onClick={() => handleSelectAnswer(index)}
             />
