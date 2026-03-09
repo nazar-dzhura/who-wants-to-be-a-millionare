@@ -1,0 +1,39 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 64px;
+  min-width: 296px;
+  padding: 0 24px;
+  border: none;
+  border-radius: 12px;
+  background-color: var(--color-orange-100);
+  color: var(--color-white);
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.16;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.button:hover {
+  background-color: var(--color-orange-80);
+}
+
+.button:active {
+  background-color: var(--color-orange-120);
+}
+
+.button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+  .button {
+    width: 100%;
+    height: 48px;
+    min-width: unset;
+    font-size: 16px;
+  }
+}

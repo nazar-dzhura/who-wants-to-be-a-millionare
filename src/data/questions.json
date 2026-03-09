@@ -1,0 +1,148 @@
+{
+  "questions": [
+    {
+      "id": 1,
+      "text": "What is the chemical symbol for water?",
+      "answers": [
+        { "text": "CO2" },
+        { "text": "H2O" },
+        { "text": "NaCl" },
+        { "text": "O2" }
+      ],
+      "correctAnswers": [1],
+      "prize": 500
+    },
+    {
+      "id": 2,
+      "text": "Which planet is known as the Red Planet?",
+      "answers": [
+        { "text": "Venus" },
+        { "text": "Jupiter" },
+        { "text": "Mars" },
+        { "text": "Saturn" }
+      ],
+      "correctAnswers": [2],
+      "prize": 1000
+    },
+    {
+      "id": 3,
+      "text": "How many continents are there on Earth?",
+      "answers": [
+        { "text": "5" },
+        { "text": "6" },
+        { "text": "7" },
+        { "text": "8" }
+      ],
+      "correctAnswers": [2],
+      "prize": 2000
+    },
+    {
+      "id": 4,
+      "text": "Who painted the Mona Lisa?",
+      "answers": [
+        { "text": "Vincent van Gogh" },
+        { "text": "Pablo Picasso" },
+        { "text": "Michelangelo" },
+        { "text": "Leonardo da Vinci" }
+      ],
+      "correctAnswers": [3],
+      "prize": 4000
+    },
+    {
+      "id": 5,
+      "text": "What is the largest ocean on Earth?",
+      "answers": [
+        { "text": "Atlantic Ocean" },
+        { "text": "Indian Ocean" },
+        { "text": "Arctic Ocean" },
+        { "text": "Pacific Ocean" }
+      ],
+      "correctAnswers": [3],
+      "prize": 8000
+    },
+    {
+      "id": 6,
+      "text": "In what year did the Berlin Wall fall?",
+      "answers": [
+        { "text": "1987" },
+        { "text": "1989" },
+        { "text": "1991" },
+        { "text": "1985" }
+      ],
+      "correctAnswers": [1],
+      "prize": 16000
+    },
+    {
+      "id": 7,
+      "text": "What is the speed of light in vacuum (approximately)?",
+      "answers": [
+        { "text": "150,000 km/s" },
+        { "text": "300,000 km/s" },
+        { "text": "450,000 km/s" },
+        { "text": "600,000 km/s" }
+      ],
+      "correctAnswers": [1],
+      "prize": 32000
+    },
+    {
+      "id": 8,
+      "text": "Which element has the atomic number 79?",
+      "answers": [
+        { "text": "Silver" },
+        { "text": "Platinum" },
+        { "text": "Gold" },
+        { "text": "Copper" }
+      ],
+      "correctAnswers": [2],
+      "prize": 64000
+    },
+    {
+      "id": 9,
+      "text": "What is the longest river in the world?",
+      "answers": [
+        { "text": "Amazon" },
+        { "text": "Nile" },
+        { "text": "Yangtze" },
+        { "text": "Mississippi" }
+      ],
+      "correctAnswers": [1],
+      "prize": 125000
+    },
+    {
+      "id": 10,
+      "text": "Who developed the theory of general relativity?",
+      "answers": [
+        { "text": "Isaac Newton" },
+        { "text": "Niels Bohr" },
+        { "text": "Albert Einstein" },
+        { "text": "Max Planck" }
+      ],
+      "correctAnswers": [2],
+      "prize": 250000
+    },
+    {
+      "id": 11,
+      "text": "What is the rarest blood type in humans?",
+      "answers": [
+        { "text": "O negative" },
+        { "text": "A negative" },
+        { "text": "B negative" },
+        { "text": "AB negative" }
+      ],
+      "correctAnswers": [3],
+      "prize": 500000
+    },
+    {
+      "id": 12,
+      "text": "In which year was the first successful human heart transplant performed?",
+      "answers": [
+        { "text": "1960" },
+        { "text": "1967" },
+        { "text": "1970" },
+        { "text": "1955" }
+      ],
+      "correctAnswers": [1],
+      "prize": 1000000
+    }
+  ]
+}
