@@ -34,6 +34,20 @@
   white-space: nowrap;
 }
 
+@media (min-width: 2560px) {
+  .ladder {
+    gap: 12px;
+  }
+
+  .step {
+    height: 60px;
+  }
+
+  .stepText {
+    font-size: 30px;
+  }
+}
+
 .mobile .step {
   height: 32px;
 }

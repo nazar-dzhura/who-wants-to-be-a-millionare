@@ -57,6 +57,35 @@
   line-height: 1.16;
 }
 
+@media (min-width: 2560px) {
+  .content {
+    max-width: 1920px;
+    padding: 60px 120px;
+    gap: 48px;
+  }
+
+  .illustration {
+    width: 936px;
+  }
+
+  .info {
+    gap: 48px;
+    max-width: 936px;
+  }
+
+  .scoreBlock {
+    gap: 12px;
+  }
+
+  .label {
+    font-size: 36px;
+  }
+
+  .score {
+    font-size: 84px;
+  }
+}
+
 @media (max-width: 768px) {
   .container {
     align-items: stretch;

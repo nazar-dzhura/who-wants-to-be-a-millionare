@@ -49,6 +49,29 @@
   overflow: hidden;
 }
 
+@media (min-width: 2560px) {
+  .main {
+    padding: 200px 120px 183px;
+    justify-content: center;
+    gap: 120px;
+  }
+
+  .questionText {
+    font-size: 48px;
+    max-width: 936px;
+  }
+
+  .answersGrid {
+    gap: 48px 0;
+    max-width: 1800px;
+  }
+
+  .sidebar {
+    width: 564px;
+    padding: 249px 0 0;
+  }
+}
+
 @media (max-width: 1024px) {
   .main {
     padding: 100px 40px 80px;

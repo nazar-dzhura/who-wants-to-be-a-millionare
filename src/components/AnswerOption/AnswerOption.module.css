@@ -62,6 +62,26 @@
   line-height: 1.16;
 }
 
+@media (min-width: 2560px) {
+  .option {
+    height: 108px;
+  }
+
+  .content {
+    gap: 12px;
+    padding-left: 72px;
+  }
+
+  .letter {
+    font-size: 30px;
+    width: 24px;
+  }
+
+  .text {
+    font-size: 30px;
+  }
+}
+
 @media (max-width: 768px) {
   .option {
     height: 56px;
