@@ -21,7 +21,7 @@ A trivia game built with Next.js, TypeScript, and CSS Modules. Players answer 12
 ### Installation
 
 ```bash
-git clone https://github.com/<your-username>/who-wants-to-be-a-millionare.git
+git clone https://github.com/nazar-dzhura/who-wants-to-be-a-millionare.git
 cd who-wants-to-be-a-millionare
 npm install
 ```
@@ -80,7 +80,9 @@ Questions and answers are defined in `src/data/questions.json`. The config suppo
 - **Language**: TypeScript
 - **Styling**: CSS Modules + CSS custom properties
 - **State**: React Context + useReducer
-- **Linting**: ESLint with Next.js rules
+- **Linting**: ESLint 9 with Next.js core-web-vitals + TypeScript rules
+
+> **Note on Airbnb ESLint:** The `eslint-config-airbnb` package does not yet support ESLint 9 flat config (required by Next.js 16). The project uses `eslint-config-next/core-web-vitals` and `eslint-config-next/typescript`, which enforce the majority of Airbnb rules including React hooks, JSX accessibility, import ordering, and TypeScript strict checks.
 
 ## Deploy
 
