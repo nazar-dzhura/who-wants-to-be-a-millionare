@@ -71,7 +71,7 @@ export function GameScreen() {
         <div className={styles.answersGrid}>
           {currentQuestion.answers.map((answer, index) => (
             <AnswerOption
-              key={answer.text}
+              key={`${currentQuestion.id}-${index}`}
               index={index}
               text={answer.text}
               status={getAnswerDisplayStatus(
