@@ -1,6 +1,6 @@
 import { formatCurrency } from '@/utils/formatCurrency';
-import type { Question } from '@/types/game';
-import { STEP_STATE_COLORS, type StepStatus } from '@/constants/colors';
+import type { Question, StepStatus } from '@/types/game';
+import { STEP_STATE_COLORS } from '@/constants/colors';
 import styles from './MoneyLadder.module.css';
 
 interface MoneyLadderProps {
@@ -37,6 +37,22 @@ function StepSvg({ stroke }: { stroke: string }) {
   );
 }
 
+function MoneyStep({ prize, status }: { prize: number; status: StepStatus }) {
+  const colors = STEP_STATE_COLORS[status];
+
+  return (
+    <li className={styles.step}>
+      <StepSvg stroke={colors.stroke} />
+      <span
+        className={styles.stepText}
+        style={{ color: colors.text }}
+      >
+        {formatCurrency(prize)}
+      </span>
+    </li>
+  );
+}
+
 export function MoneyLadder({
   questions,
   currentIndex,
@@ -50,18 +66,12 @@ export function MoneyLadder({
         if (originalIdx === currentIndex) status = 'current';
         else if (originalIdx < currentIndex) status = 'finished';
 
-        const colors = STEP_STATE_COLORS[status];
-
         return (
-          <li key={question.id} className={styles.step}>
-            <StepSvg stroke={colors.stroke} />
-            <span
-              className={styles.stepText}
-              style={{ color: colors.text }}
-            >
-              {formatCurrency(question.prize)}
-            </span>
-          </li>
+          <MoneyStep
+            key={question.id}
+            prize={question.prize}
+            status={status}
+          />
         );
       })}
     </ul>

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
+import { ErrorBoundary } from '@/components/ErrorBoundary/ErrorBoundary';
 import { GameProvider } from '@/context/GameContext';
 import './globals.css';
 
@@ -21,9 +22,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <GameProvider>
-          {children}
-        </GameProvider>
+        <ErrorBoundary>
+          <GameProvider>
+            {children}
+          </GameProvider>
+        </ErrorBoundary>
       </body>
     </html>
   );

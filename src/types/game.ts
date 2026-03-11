@@ -34,3 +34,5 @@ export type GameAction =
   | { type: 'NEXT_QUESTION' }
   | { type: 'END_GAME' }
   | { type: 'RESET_GAME' };
+
+export type StepStatus = 'inactive' | 'current' | 'finished';
